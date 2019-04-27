@@ -1,6 +1,7 @@
 package actions;
 
 import java.awt.event.ActionEvent;
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -38,6 +39,7 @@ public class LoadCharFile extends AbstractAction{
 			}
 			
 			fillView(dto);
+			controller.reTitleFrame(new File(path).getName());
 		}
 	}
 

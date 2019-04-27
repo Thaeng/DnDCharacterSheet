@@ -52,7 +52,7 @@ public class Controller implements ControllerInterface{
 	private void createMenu() {
 		dndMenu = new DnDMenu();
 		dndMenu.getLoad().addActionListener(new LoadCharFile((ControllerInterface)this));
-		dndMenu.getSave().addActionListener(new SaveCharFile(stats, proficiencyBonus));
+		dndMenu.getSave().addActionListener(new SaveCharFile(stats, proficiencyBonus, (ControllerInterface)this));
 	}
 	
 	private void createStats() {
@@ -76,5 +76,10 @@ public class Controller implements ControllerInterface{
 	@Override
 	public ProficiencyBonus getProficiencyBonus() {
 		return this.proficiencyBonus;
+	}
+
+	@Override
+	public void reTitleFrame(String title) {
+		view.setTitle(title);		
 	}
 }

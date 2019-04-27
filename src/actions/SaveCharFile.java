@@ -1,6 +1,7 @@
 package actions;
 
 import java.awt.event.ActionEvent;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,10 +10,10 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import controller.ControllerInterface;
 import io.CharFileChooser;
 import io.CharFileDTO;
 import io.CharFileWriter;
-import javafx.stage.Popup;
 import stats.ProficiencyBonus;
 import stats.Stat;
 import view.PopupMessage;
@@ -22,10 +23,12 @@ public class SaveCharFile extends AbstractAction {
 
 	private List<Stat> stats;
 	private ProficiencyBonus proficiencyBonus;
+	private ControllerInterface controller;
 
-	public SaveCharFile(List<Stat> stats, ProficiencyBonus proficiencyBonus) {
+	public SaveCharFile(List<Stat> stats, ProficiencyBonus proficiencyBonus, ControllerInterface controller) {
 		this.stats = stats;
 		this.proficiencyBonus = proficiencyBonus;
+		this.controller = controller;
 	}
 
 	@Override
@@ -51,8 +54,9 @@ public class SaveCharFile extends AbstractAction {
 
 		try {
 			CharFileWriter.getInstance().writeCharFile(path, dto);
+			controller.reTitleFrame(new File(path).getName());
 		} catch (Exception e1) {
-			e1.printStackTrace();
+			PopupMessage.popException("An error occured during saving the Character", e1);
 		}
 	}
 

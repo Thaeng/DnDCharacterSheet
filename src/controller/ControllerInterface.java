@@ -9,5 +9,6 @@ public interface ControllerInterface {
 
 	public List<Stat> getStats();
 	public ProficiencyBonus getProficiencyBonus();
+	public void reTitleFrame(String title);
 	
 }

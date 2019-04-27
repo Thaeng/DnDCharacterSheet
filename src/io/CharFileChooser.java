@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 @SuppressWarnings("serial")
@@ -12,8 +13,12 @@ public class CharFileChooser extends JFileChooser{
 	private static CharFileChooser instance;
 	private static final String FILE_EXTENSION = "char";
 	
+	private String defaulPath;
+	
 	private CharFileChooser() {
-		
+		defaulPath = this.getClass().getProtectionDomain().getCodeSource().getLocation().getPath();
+		JOptionPane.showMessageDialog(null, defaulPath);
+		this.setCurrentDirectory(new File(defaulPath));
 	}
 	
 	public static CharFileChooser getInstance() {
