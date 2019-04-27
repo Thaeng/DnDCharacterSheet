@@ -56,6 +56,7 @@ public class View extends JFrame{
 		
 		this.pack();
 		this.setVisible(true);
+		this.setResizable(false);
 	}
 	
 	public JPanel createMainStats(ArrayList<Stat> stats) {
